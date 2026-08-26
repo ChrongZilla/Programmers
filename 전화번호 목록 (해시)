@@ -1,0 +1,44 @@
+/*
+1. 정렬
+2. 현재가 다음 숫자의 시작인지 전부 확인 (맞으면 false, 아니면 true)
+*/
+
+import java.util.*;
+
+class Solution {
+    public boolean solution(String[] phone_book) {   
+        /*
+        Arrays.sort(phone_book);
+        
+        for (int i = 0; i < phone_book.length - 1; i++) {
+            String current = phone_book[i];
+            String next = phone_book[i + 1];
+            
+            if (next.startsWith(current)) {
+                return false;
+            }
+        }
+        
+        return true;
+        */
+        
+        Set<String> phoneSet = new HashSet<>();
+        for (String number : phone_book)
+            phoneSet.add(number);
+        // Collections.addAll(phoneSet, phone_book);
+        // Set<String> phoneSet = Arrays.stream(phone_book).collect(Collectors.toSet());
+        
+        for (String number : phone_book) {
+            // 자기 자신을 제외한, 더 짧은 모든 접두사를 확인
+            for (int i = 1; i < number.length(); i++) {
+                String prefix = number.substring(0, i);
+
+                if (phoneSet.contains(prefix)) {
+                    return false;  // 접두사가 전화번호부에 존재
+                }
+            }
+        }
+        
+        return true;
+    }
+}
