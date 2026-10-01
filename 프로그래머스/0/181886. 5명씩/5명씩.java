@@ -1,6 +1,6 @@
 class Solution {
     public String[] solution(String[] names) {
-        String[] answer = new String[(int)Math.ceil((names.length*1.0)/5)];
+        String[] answer = new String[(int)Math.ceil(names.length/5.0)];
         int j = 0;
         
         for(int i = 0; i < names.length; i+=5)
